@@ -21,6 +21,7 @@ app = FastAPI(title="Retail BigQuery Webapp", version="1.0.0")
 
 DBT_DOCS_DIR = Path("target")
 DBT_DOCS_ENABLED = DBT_DOCS_DIR.exists()
+STATIC_DIR = Path("app/static")
 
 def _prepare_dbt_docs() -> None:
     index_path = DBT_DOCS_DIR / "index.html"
@@ -38,6 +39,9 @@ def _prepare_dbt_docs() -> None:
 if DBT_DOCS_ENABLED:
     _prepare_dbt_docs()
     app.mount("/dbt-docs", StaticFiles(directory=str(DBT_DOCS_DIR), html=True), name="dbt-docs")
+
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
 @app.get("/health")
@@ -186,10 +190,13 @@ def home(message: str = "") -> str:
         latest_fields_html = "<p class='mini'>No submission fields available.</p>"
 
     docs_link_html = (
-        '<div><strong>Technical docs:</strong> '
+        '<div><strong>Technical links:</strong> '
         '<a href="/dbt-docs/index.html" target="_blank" rel="noopener noreferrer" '
-        'style="color: var(--accent); text-decoration: none; font-weight: 700;">'
-        'View dbt Docs</a></div>'
+        'style="color: var(--accent); text-decoration: none; font-weight: 700; margin-right: 14px;">'
+        'View dbt Docs</a>'
+        '<a href="https://github.com/Tuaaut/retail-bigquery-project-webapp" target="_blank" rel="noopener noreferrer" '
+        'style="color: var(--accent-2); text-decoration: none; font-weight: 700;">'
+        'View GitHub Repo</a></div>'
         if DBT_DOCS_ENABLED
         else ""
     )
@@ -201,6 +208,7 @@ def home(message: str = "") -> str:
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Retail Analytics Dashboard</title>
+      <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <style>
         html {{
