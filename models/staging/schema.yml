@@ -1,0 +1,174 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Cleaned customer data with standardized names and emails.
+    columns:
+      - name: customer_id
+        description: Unique identifier for each customer.
+        tests:
+          - not_null
+          - unique
+      - name: customer_name
+        description: Standardized customer name in uppercase format.
+      - name: email
+        description: Customer email stored in lowercase format.
+        tests:
+          - not_null
+      - name: signup_date
+        description: Date when the customer signed up.
+        tests:
+          - not_null
+      - name: city
+        description: City associated with the customer.
+
+  - name: stg_stores
+    description: Cleaned store attributes used for downstream joins.
+    columns:
+      - name: store_id
+        description: Unique identifier for each store.
+        tests:
+          - not_null
+          - unique
+      - name: store_name
+        description: Standardized store name in uppercase format.
+      - name: city
+        description: City where the store is located.
+      - name: region
+        description: Standardized store region in lowercase format.
+      - name: opened_date
+        description: Date when the store opened.
+      - name: store_type
+        description: Standardized store type in lowercase format.
+
+  - name: stg_products
+    description: Cleaned product master data with standardized text and pricing columns.
+    columns:
+      - name: product_id
+        description: Unique identifier for each product.
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+        description: Standardized product name in uppercase format.
+      - name: category
+        description: Product category in lowercase format.
+      - name: brand
+        description: Product brand in lowercase format.
+      - name: base_price
+        description: Base unit price of the product.
+        tests:
+          - not_null
+
+  - name: stg_orders
+    description: Cleaned order header data with one row per order.
+    columns:
+      - name: order_id
+        description: Unique identifier for each order.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Identifier of the customer who placed the order.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+      - name: store_id
+        description: Identifier of the store where the order was placed.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stores')
+                field: store_id
+      - name: order_date
+        description: Date when the order was placed.
+        tests:
+          - not_null
+      - name: order_amount
+        description: Total monetary amount of the order.
+        tests:
+          - not_null
+      - name: order_status
+        description: Standardized order status in lowercase format.
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - completed
+                  - pending
+                  - cancelled
+
+  - name: stg_order_items
+    description: Cleaned order line data with one row per product line.
+    columns:
+      - name: order_line_id
+        description: Unique identifier for each order line.
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: Identifier of the order linked to the item line.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: product_id
+        description: Identifier of the product on the order line.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+      - name: quantity
+        description: Quantity of the product purchased on the line.
+        tests:
+          - not_null
+      - name: unit_price
+        description: Unit price of the product on the line.
+        tests:
+          - not_null
+      - name: line_amount
+        description: Extended amount for the order line.
+        tests:
+          - not_null
+
+  - name: stg_payments
+    description: Cleaned payment records with one or more rows per order.
+    columns:
+      - name: payment_id
+        description: Unique identifier for each payment record.
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: Identifier of the order tied to the payment.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: payment_date
+        description: Date when the payment was recorded.
+      - name: payment_amount
+        description: Monetary amount of the payment record.
+        tests:
+          - not_null
+      - name: payment_method
+        description: Standardized payment method in lowercase format.
+      - name: payment_status
+        description: Standardized payment status in lowercase format.
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - paid
+                  - pending
+                  - failed

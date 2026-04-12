@@ -1,0 +1,121 @@
+customer_id,customer_name,email,signup_date,city
+1,customer_001,customer_001@example.com,2023-01-08,chiang mai
+2,customer_002,customer_002@example.com,2023-01-15,phuket
+3,customer_003,customer_003@example.com,2023-01-22,khon kaen
+4,customer_004,customer_004@example.com,2023-01-29,chonburi
+5,customer_005,customer_005@example.com,2023-02-05,hat yai
+6,customer_006,customer_006@example.com,2023-02-12,bangkok
+7,customer_007,customer_007@example.com,2023-02-19,chiang mai
+8,customer_008,customer_008@example.com,2023-02-26,phuket
+9,customer_009,customer_009@example.com,2023-03-05,khon kaen
+10,customer_010,customer_010@example.com,2023-03-12,chonburi
+11,customer_011,customer_011@example.com,2023-03-19,hat yai
+12,customer_012,customer_012@example.com,2023-03-26,bangkok
+13,customer_013,customer_013@example.com,2023-04-02,chiang mai
+14,customer_014,customer_014@example.com,2023-04-09,phuket
+15,customer_015,customer_015@example.com,2023-04-16,khon kaen
+16,customer_016,customer_016@example.com,2023-04-23,chonburi
+17,customer_017,customer_017@example.com,2023-04-30,hat yai
+18,customer_018,customer_018@example.com,2023-05-07,bangkok
+19,customer_019,customer_019@example.com,2023-05-14,chiang mai
+20,customer_020,customer_020@example.com,2023-05-21,phuket
+21,customer_021,customer_021@example.com,2023-05-28,khon kaen
+22,customer_022,customer_022@example.com,2023-06-04,chonburi
+23,customer_023,customer_023@example.com,2023-06-11,hat yai
+24,customer_024,customer_024@example.com,2023-06-18,bangkok
+25,customer_025,customer_025@example.com,2023-06-25,chiang mai
+26,customer_026,customer_026@example.com,2023-07-02,phuket
+27,customer_027,customer_027@example.com,2023-07-09,khon kaen
+28,customer_028,customer_028@example.com,2023-07-16,chonburi
+29,customer_029,customer_029@example.com,2023-07-23,hat yai
+30,customer_030,customer_030@example.com,2023-07-30,bangkok
+31,customer_031,customer_031@example.com,2023-08-06,chiang mai
+32,customer_032,customer_032@example.com,2023-08-13,phuket
+33,customer_033,customer_033@example.com,2023-08-20,khon kaen
+34,customer_034,customer_034@example.com,2023-08-27,chonburi
+35,customer_035,customer_035@example.com,2023-09-03,hat yai
+36,customer_036,customer_036@example.com,2023-09-10,bangkok
+37,customer_037,customer_037@example.com,2023-09-17,chiang mai
+38,customer_038,customer_038@example.com,2023-09-24,phuket
+39,customer_039,customer_039@example.com,2023-10-01,khon kaen
+40,customer_040,customer_040@example.com,2023-10-08,chonburi
+41,customer_041,customer_041@example.com,2023-10-15,hat yai
+42,customer_042,customer_042@example.com,2023-10-22,bangkok
+43,customer_043,customer_043@example.com,2023-10-29,chiang mai
+44,customer_044,customer_044@example.com,2023-11-05,phuket
+45,customer_045,customer_045@example.com,2023-11-12,khon kaen
+46,customer_046,customer_046@example.com,2023-11-19,chonburi
+47,customer_047,customer_047@example.com,2023-11-26,hat yai
+48,customer_048,customer_048@example.com,2023-12-03,bangkok
+49,customer_049,customer_049@example.com,2023-12-10,chiang mai
+50,customer_050,customer_050@example.com,2023-12-17,phuket
+51,customer_051,customer_051@example.com,2023-12-24,khon kaen
+52,customer_052,customer_052@example.com,2023-12-31,chonburi
+53,customer_053,customer_053@example.com,2023-01-07,hat yai
+54,customer_054,customer_054@example.com,2023-01-14,bangkok
+55,customer_055,customer_055@example.com,2023-01-21,chiang mai
+56,customer_056,customer_056@example.com,2023-01-28,phuket
+57,customer_057,customer_057@example.com,2023-02-04,khon kaen
+58,customer_058,customer_058@example.com,2023-02-11,chonburi
+59,customer_059,customer_059@example.com,2023-02-18,hat yai
+60,customer_060,customer_060@example.com,2023-02-25,bangkok
+61,customer_061,customer_061@example.com,2023-03-04,chiang mai
+62,customer_062,customer_062@example.com,2023-03-11,phuket
+63,customer_063,customer_063@example.com,2023-03-18,khon kaen
+64,customer_064,customer_064@example.com,2023-03-25,chonburi
+65,customer_065,customer_065@example.com,2023-04-01,hat yai
+66,customer_066,customer_066@example.com,2023-04-08,bangkok
+67,customer_067,customer_067@example.com,2023-04-15,chiang mai
+68,customer_068,customer_068@example.com,2023-04-22,phuket
+69,customer_069,customer_069@example.com,2023-04-29,khon kaen
+70,customer_070,customer_070@example.com,2023-05-06,chonburi
+71,customer_071,customer_071@example.com,2023-05-13,hat yai
+72,customer_072,customer_072@example.com,2023-05-20,bangkok
+73,customer_073,customer_073@example.com,2023-05-27,chiang mai
+74,customer_074,customer_074@example.com,2023-06-03,phuket
+75,customer_075,customer_075@example.com,2023-06-10,khon kaen
+76,customer_076,customer_076@example.com,2023-06-17,chonburi
+77,customer_077,customer_077@example.com,2023-06-24,hat yai
+78,customer_078,customer_078@example.com,2023-07-01,bangkok
+79,customer_079,customer_079@example.com,2023-07-08,chiang mai
+80,customer_080,customer_080@example.com,2023-07-15,phuket
+81,customer_081,customer_081@example.com,2023-07-22,khon kaen
+82,customer_082,customer_082@example.com,2023-07-29,chonburi
+83,customer_083,customer_083@example.com,2023-08-05,hat yai
+84,customer_084,customer_084@example.com,2023-08-12,bangkok
+85,customer_085,customer_085@example.com,2023-08-19,chiang mai
+86,customer_086,customer_086@example.com,2023-08-26,phuket
+87,customer_087,customer_087@example.com,2023-09-02,khon kaen
+88,customer_088,customer_088@example.com,2023-09-09,chonburi
+89,customer_089,customer_089@example.com,2023-09-16,hat yai
+90,customer_090,customer_090@example.com,2023-09-23,bangkok
+91,customer_091,customer_091@example.com,2023-09-30,chiang mai
+92,customer_092,customer_092@example.com,2023-10-07,phuket
+93,customer_093,customer_093@example.com,2023-10-14,khon kaen
+94,customer_094,customer_094@example.com,2023-10-21,chonburi
+95,customer_095,customer_095@example.com,2023-10-28,hat yai
+96,customer_096,customer_096@example.com,2023-11-04,bangkok
+97,customer_097,customer_097@example.com,2023-11-11,chiang mai
+98,customer_098,customer_098@example.com,2023-11-18,phuket
+99,customer_099,customer_099@example.com,2023-11-25,khon kaen
+100,customer_100,customer_100@example.com,2023-12-02,chonburi
+101,customer_101,customer_101@example.com,2023-12-09,hat yai
+102,customer_102,customer_102@example.com,2023-12-16,bangkok
+103,customer_103,customer_103@example.com,2023-12-23,chiang mai
+104,customer_104,customer_104@example.com,2023-12-30,phuket
+105,customer_105,customer_105@example.com,2023-01-06,khon kaen
+106,customer_106,customer_106@example.com,2023-01-13,chonburi
+107,customer_107,customer_107@example.com,2023-01-20,hat yai
+108,customer_108,customer_108@example.com,2023-01-27,bangkok
+109,customer_109,customer_109@example.com,2023-02-03,chiang mai
+110,customer_110,customer_110@example.com,2023-02-10,phuket
+111,customer_111,customer_111@example.com,2023-02-17,khon kaen
+112,customer_112,customer_112@example.com,2023-02-24,chonburi
+113,customer_113,customer_113@example.com,2023-03-03,hat yai
+114,customer_114,customer_114@example.com,2023-03-10,bangkok
+115,customer_115,customer_115@example.com,2023-03-17,chiang mai
+116,customer_116,customer_116@example.com,2023-03-24,phuket
+117,customer_117,customer_117@example.com,2023-03-31,khon kaen
+118,customer_118,customer_118@example.com,2023-04-07,chonburi
+119,customer_119,customer_119@example.com,2023-04-14,hat yai
+120,customer_120,customer_120@example.com,2023-04-21,bangkok

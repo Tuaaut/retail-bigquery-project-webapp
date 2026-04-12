@@ -1,0 +1,98 @@
+version: 2
+
+models:
+  - name: int_orders_enriched
+    description: Order-level model enriched with customer and store context.
+    columns:
+      - name: order_id
+        description: Unique identifier for each order.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Identifier of the customer who placed the order.
+        tests:
+          - not_null
+      - name: store_id
+        description: Identifier of the store where the order was placed.
+        tests:
+          - not_null
+      - name: customer_name
+        description: Customer name carried from the staging layer.
+      - name: store_name
+        description: Store name carried from the staging layer.
+      - name: order_date
+        description: Date when the order was placed.
+      - name: order_amount
+        description: Monetary amount of the order.
+      - name: order_status
+        description: Status of the order.
+
+  - name: int_order_payments
+    description: Payment summary rolled up to one row per order.
+    columns:
+      - name: order_id
+        description: Unique identifier for each order in the payment rollup.
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: total_paid_amount
+        description: Sum of paid payment amounts for the order.
+      - name: successful_payment_count
+        description: Number of paid payment records tied to the order.
+      - name: latest_payment_date
+        description: Latest payment date tied to the order.
+
+  - name: int_order_item_enriched
+    description: Order-line model enriched with order and product attributes.
+    columns:
+      - name: order_line_id
+        description: Unique identifier for each order line.
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: Identifier of the parent order.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: product_id
+        description: Identifier of the product on the order line.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+      - name: quantity
+        description: Quantity purchased on the order line.
+      - name: unit_price
+        description: Unit price captured on the order line.
+      - name: line_amount
+        description: Extended amount captured on the order line.
+
+  - name: int_order_item_rollup
+    description: Order-level rollup derived from item lines.
+    columns:
+      - name: order_id
+        description: Unique identifier for each order in the item rollup.
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: total_quantity
+        description: Total units sold across all lines in the order.
+      - name: distinct_products
+        description: Number of distinct products in the order.
+      - name: item_subtotal
+        description: Sum of order-line amounts in the order.

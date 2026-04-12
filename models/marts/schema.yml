@@ -1,0 +1,173 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customer dimension with one row per customer and summarized order history.
+    columns:
+      - name: customer_id
+        description: Unique identifier for each customer.
+        tests:
+          - not_null
+          - unique
+      - name: customer_name
+        description: Standardized customer name.
+      - name: email
+        description: Customer email address.
+      - name: city
+        description: Customer city.
+      - name: signup_date
+        description: Date when the customer signed up.
+      - name: total_orders
+        description: Number of orders placed by the customer.
+      - name: lifetime_order_value
+        description: Total order value placed by the customer.
+
+  - name: dim_stores
+    description: Store dimension with one row per store and summarized order history.
+    columns:
+      - name: store_id
+        description: Unique identifier for each store.
+        tests:
+          - not_null
+          - unique
+      - name: store_name
+        description: Standardized store name.
+      - name: city
+        description: City where the store is located.
+      - name: region
+        description: Region where the store is located.
+      - name: opened_date
+        description: Date when the store opened.
+      - name: store_type
+        description: Store type such as flagship, branch, or express.
+
+  - name: dim_products
+    description: Product dimension with one row per product and summarized sales metrics.
+    columns:
+      - name: product_id
+        description: Unique identifier for each product.
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+        description: Standardized product name.
+      - name: category
+        description: Product category.
+      - name: brand
+        description: Product brand.
+      - name: base_price
+        description: Base unit price of the product.
+
+  - name: fct_orders
+    description: Order-level fact table with customer, store, item, and payment context.
+    columns:
+      - name: order_id
+        description: Unique identifier for each order.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Identifier of the customer who placed the order.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+      - name: store_id
+        description: Identifier of the store where the order was placed.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_stores')
+                field: store_id
+      - name: order_amount
+        description: Total amount of the order.
+      - name: total_quantity
+        description: Total quantity across all items in the order.
+      - name: distinct_products
+        description: Number of distinct products in the order.
+      - name: item_subtotal
+        description: Sum of order-line amounts in the order.
+      - name: total_paid_amount
+        description: Total amount paid for the order.
+      - name: payment_state
+        description: Derived payment state for the order.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['fully_paid', 'partially_paid', 'unpaid']
+
+  - name: fct_order_items
+    description: Item-level fact table with one row per product line in an order.
+    columns:
+      - name: order_line_id
+        description: Unique identifier for each order line.
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: Identifier of the order tied to the line.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('fct_orders')
+                field: order_id
+      - name: product_id
+        description: Identifier of the product on the order line.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_products')
+                field: product_id
+      - name: customer_id
+        description: Identifier of the customer tied to the order line.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+      - name: store_id
+        description: Identifier of the store tied to the order line.
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_stores')
+                field: store_id
+      - name: quantity
+        description: Quantity purchased on the line.
+      - name: unit_price
+        description: Unit price captured on the line.
+      - name: line_amount
+        description: Extended amount captured on the line.
+
+  - name: fct_submitted_orders
+    description: Incremental fact table built from uploaded submission rows at one row per order.
+    columns:
+      - name: submission_id
+        description: Identifier of the latest raw submitted row retained for the order.
+      - name: submitted_at
+        description: Timestamp when the payload was submitted.
+        tests:
+          - not_null
+      - name: order_id
+        description: Order identifier extracted from the uploaded submission rows.
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Customer identifier extracted from the uploaded submission rows.
+      - name: store_id
+        description: Store identifier extracted from the uploaded submission rows.
+      - name: order_date
+        description: Order date extracted from the uploaded submission rows.
+      - name: order_amount
+        description: Order amount extracted from the uploaded submission rows.
+      - name: order_status
+        description: Order status extracted from the uploaded submission rows.
+

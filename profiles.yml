@@ -1,0 +1,41 @@
+retail_bigquery_project_webapp:
+  target: "{{ env_var('DBT_TARGET', 'dev') }}"
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: retail-bigquery-project-webapp
+      dataset: analytics_webapp_dev
+      threads: 4
+      keyfile: /Users/woraphu/Documents/DBT/retail_bigquery_project_webapp/secrets/retail-bigquery-project-webapp-11cb2b57ecb4.json
+      location: asia-southeast1
+      priority: interactive
+
+    cloud_run:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID', 'retail-bigquery-project-webapp') }}"
+      dataset: "{{ env_var('BQ_DATASET', 'analytics_webapp_dev') }}"
+      threads: 4
+      location: asia-southeast1
+      priority: interactive
+
+    staging:
+      type: bigquery
+      method: service-account
+      project: retail-bigquery-project-webapp
+      dataset: analytics_webapp_staging
+      threads: 4
+      keyfile: /Users/woraphu/Documents/DBT/retail_bigquery_project_webapp/secrets/retail-bigquery-project-webapp-11cb2b57ecb4.json
+      location: asia-southeast1
+      priority: interactive
+
+    prod:
+      type: bigquery
+      method: service-account
+      project: retail-bigquery-project-webapp
+      dataset: analytics_webapp_prod
+      threads: 8
+      keyfile: /Users/woraphu/Documents/DBT/retail_bigquery_project_webapp/secrets/retail-bigquery-project-webapp-11cb2b57ecb4.json
+      location: asia-southeast1
+      priority: interactive

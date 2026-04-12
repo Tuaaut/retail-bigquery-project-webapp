@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw retail tables stored directly in BigQuery.
+    database: retail-bigquery-project-webapp
+    schema: raw_webapp
+    tables:
+      - name: customers
+        description: Raw customer master table.
+      - name: stores
+        description: Raw store master table.
+      - name: products
+        description: Raw product master table.
+      - name: orders
+        description: Raw order header table with one row per order.
+      - name: order_items
+        description: Raw order line table with one row per order item.
+      - name: payments
+        description: Raw payment table with one or more rows per order.
+      - name: json_submissions
+        description: Raw JSON submissions received from the FastAPI intake form.
+

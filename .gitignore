@@ -1,0 +1,14 @@
+# dbt artifacts
+logs/
+dbt_packages/
+
+# Local-only config
+.user.yml
+
+# OS/editor noise
+.DS_Store
+.idea/
+.vscode/
+
+# GCP credentials
+secrets/

@@ -1,0 +1,32 @@
+retail_bigquery_project:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: bq-test-query
+      dataset: analytics_dev
+      threads: 4
+      keyfile: /Users/woraphu/Documents/DBT/retail_bigquery_project/secrets/bq-test-query-d5e17ae4c651.json
+      location: asia-southeast1
+      priority: interactive
+
+    staging:
+      type: bigquery
+      method: service-account
+      project: bq-test-query
+      dataset: analytics_staging
+      threads: 4
+      keyfile: /Users/woraphu/Documents/DBT/retail_bigquery_project/secrets/bq-test-query-d5e17ae4c651.json
+      location: asia-southeast1
+      priority: interactive
+
+    prod:
+      type: bigquery
+      method: service-account
+      project: bq-test-query
+      dataset: analytics_prod
+      threads: 8
+      keyfile: /Users/woraphu/Documents/DBT/retail_bigquery_project/secrets/bq-test-query-d5e17ae4c651.json
+      location: asia-southeast1
+      priority: interactive

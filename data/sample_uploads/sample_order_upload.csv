@@ -1,0 +1,6 @@
+order_id,customer_id,store_id,order_date,order_amount,order_status,order_line_id,product_id,quantity,unit_price,line_amount
+91001,101,1,2026-04-12,179.97,completed,9100101,201,1,59.99,59.99
+91001,101,1,2026-04-12,179.97,completed,9100102,202,2,39.99,79.98
+91001,101,1,2026-04-12,179.97,completed,9100103,203,1,39.99,39.99
+91002,102,2,2026-04-12,124.98,pending,9100201,204,1,64.99,64.99
+91002,102,2,2026-04-12,124.98,pending,9100202,205,1,59.99,59.99

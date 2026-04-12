@@ -1,0 +1,26 @@
+name: 'retail_bigquery_project_webapp'
+version: '1.0.0'
+config-version: 2
+
+profile: 'retail_bigquery_project_webapp'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  retail_bigquery_project_webapp:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
+
