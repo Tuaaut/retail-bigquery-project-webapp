@@ -12,3 +12,7 @@ dbt_packages/
 
 # GCP credentials
 secrets/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
